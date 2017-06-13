@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+    
+    
+
+    <ui:composition template="/WEB-INF/template/template.xhtml">
+
+
+        <ui:define name="contenido">
+            <div class="content-wrapper">
+                <section class="content-header">
+                    <h1>
+                        Perfil
+                        <small>Modificar Datos</small>
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li><a href="#"><i class="fa fa-home"></i> Inicio</a></li>
+                        <li class="active">Perfil</li>
+                    </ol>
+                </section>
+
+                <section class="content">
+
+                    <div class="row">
+                        <div class="col-md-3">
+
+                            <!-- Profile Image -->
+                            <div class="box box-primary">
+                                <div class="box-body box-profile">
+                                    <img class="profile-user-img img-responsive img-circle" src="#{request.contextPath}/resources/imgs/perfil.jpg" alt="User profile picture"/>
+
+                                    <h3 class="profile-username text-center">Nombre y Apellido</h3>
+
+                                    <p class="text-muted text-center">Rol</p>
+
+                                    <div class="box-header with-border">
+                                        <h3 class="box-title">Información</h3>
+                                    </div>
+
+                                    <div class="box-body">
+                                        <strong><i class="fa  fa-user margin-r-5"></i> Nombre Completo </strong>
+
+                                        <p class="text-muted">Sergio David Camargo Hormaza </p>
+
+                                        <strong><i class="fa  fa-barcode margin-r-5"></i> Documento </strong>
+
+                                        <p class="text-muted">1014213654 </p>
+
+                                        <strong><i class="fa  fa-barcode margin-r-5"></i> Tipo Documento </strong>
+
+                                        <p class="text-muted">C.C </p>
+
+                                        <strong><i class="fa fa-envelope-o margin-r-5"></i> Correo</strong>
+
+                                        <p class="text-muted">sdcamargo45@misena.edu.co</p>
+
+                                        <strong><i class="fa fa-map-marker margin-r-5"></i> Direccion</strong>
+
+                                        <p class="text-muted">Cll 63C No. 69-59</p>
+
+                                        <strong><i class="fa fa-phone margin-r-5"></i> Telefono</strong>
+
+                                        <p class="text-muted">3204740457</p>
+
+                                        <strong><i class="fa fa-spinner margin-r-5"></i> Estado</strong>
+
+                                        <p class="text-muted">Activo</p>
+
+                                    </div>
+
+                                </div>
+                                <!-- /.box-body -->
+                            </div>
+                            <!-- /.box -->
+
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-md-9">
+                            <div class="nav-tabs-custom">
+
+                                <ul class="nav nav-tabs">
+                                    <li class="active"><a href="#activity" data-toggle="tab">Datos Personales</a></li>
+                                    <li><a href="#settings" data-toggle="tab">Datos de Contacto</a></li>
+                                </ul>
+
+                                <div class="tab-content">
+                                    <div class="active tab-pane" id="activity">
+
+                                        <h:form class="form-horizontal">
+                                            <div class="form-group">
+                                                <label for="inputName" class="col-sm-2 control-label">Primer Nombre</label>
+
+                                                <div class="col-sm-10">
+                                                    <h:inputText class="form-control" id="primerNombre" a:placeholder="Nombre"/>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="inputName" class="col-sm-2 control-label">Segundo Nombre</label>
+
+                                                <div class="col-sm-10">
+                                                    <h:inputText class="form-control" id="segundoNombre" a:placeholder="Nombre"/>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="inputName" class="col-sm-2 control-label">Primer Apellido</label>
+
+                                                <div class="col-sm-10">
+                                                    <h:inputText class="form-control" id="primerApellido" a:placeholder="Apellido"/>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="inputName" class="col-sm-2 control-label">Segundo Apellido</label>
+
+                                                <div class="col-sm-10">
+                                                    <h:inputText class="form-control" id="segundoApellido" a:placeholder="Apellido"/>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-group">
+                                                <div class="col-sm-offset-2 col-sm-10">
+                                                    <h:commandButton type="submit" class="btn btn-danger" value="Guardar"></h:commandButton>
+                                                </div>
+                                            </div>
+                                        </h:form> 
+
+                                    </div>
+                                    <!-- /.tab-pane -->
+
+
+                                    <div class="tab-pane" id="settings">
+                                        <h:form class="form-horizontal">
+                                            <div class="form-group">
+                                                <label for="inputName" class="col-sm-2 control-label">Correo</label>
+
+                                                <div class="col-sm-10">
+                                                    <h:inputText a:type="email" class="form-control" id="correo" a:placeholder="Correo Electronico"/>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="inputName" class="col-sm-2 control-label">Direccion</label>
+
+                                                <div class="col-sm-10">
+                                                    <h:inputText class="form-control" id="direccion" a:placeholder="Direccion de Residencia"/>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="inputName" class="col-sm-2 control-label">Telefono</label>
+
+                                                <div class="col-sm-10">
+                                                    <h:inputText class="form-control" id="telefono" a:placeholder="Movil o Fijo"/>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-group">
+                                                <div class="col-sm-offset-2 col-sm-10">
+                                                    <h:commandButton type="submit" class="btn btn-danger" value="Guardar"></h:commandButton>
+                                                </div>
+                                            </div>
+                                        </h:form> 
+                                    </div>
+                                    <!-- /.tab-pane -->
+                                </div>
+                                <!-- /.tab-content -->
+                            </div>
+                            <!-- /.nav-tabs-custom -->
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+
+                </section>
+            </div>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:fragment xmlns="http://www.w3.org/1999/xhtml"
+             xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+             xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+             xmlns:f="http://xmlns.jcp.org/jsf/core"
+             xmlns:h="http://xmlns.jcp.org/jsf/html"
+             xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+    <!--sidebar start-->
+    <aside class="main-sidebar fija" style="position: fixed;">
+        <section  class="sidebar">
+            <div class="user-panel"> 
+                <div class="pull-left image">
+                    <img src="#{request.contextPath}/resources/imgs/perfil.jpg" class="img-circle" alt="User Image"/>
+                </div>
+                <div class="pull-left info">
+                    <p>#{sessionController.usuario.primerNombre} #{sessionController.usuario.primerApellido} </p>
+                    <a href="home.xhtml"><i class="fa fa-circle text-success"></i> En Linea</a>
+                </div>
+            </div>
+            <!-- search form -->
+            <h:form  class="sidebar-form">
+                <div class="input-group">
+                    <h:inputText   class="form-control" a:placeholder="Buscar..."/>
+                    <span class="input-group-btn">
+                        <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                        </button>
+                    </span>
+                </div>
+            </h:form>
+            <!--<div id="sidebar"  class="nav-collapse ">-->
+            <!-- sidebar menu start-->
+            <ul class="sidebar-menu" data-widget="tree">
+                <li class="header"><b>MENÚ</b></li>
+                <li class="active treeview">
+                    <a href="#{request.contextPath}/app/home.xhtml">
+                        <i class="fa fa-home"></i> 
+                        <span>Inicio</span>
+                    </a>
+                </li>
+                <c:forEach items="#{sessionController.rolSeleccionado.permisos}"
+                           var="p">
+                    <c:if test="#{empty p.permisoPadre}">
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa #{p.icon}"></i> <span>#{p.nombrePermiso}</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <c:forEach items="#{p.subPermisos}" var="sp">
+                                    <c:forEach items="#{sessionController.rolSeleccionado.permisos}" var="op">
+                                        <c:if test="#{(sp.idpermisos eq op.idpermisos)}">
+                                            <li><h:link outcome="/#{sp.url}">#{sp.nombrePermiso}</h:link></li>
+                                        </c:if>
+                                    </c:forEach>
+                                </c:forEach>
+                            </ul>
+                        </li>
+                    </c:if>
+                </c:forEach>
+            </ul>
+            <!-- sidebar menu end-->
+            <!--</div>-->
+            
+        </section>
+    </aside>
+    <!--sidebar end-->
+
+</ui:fragment>

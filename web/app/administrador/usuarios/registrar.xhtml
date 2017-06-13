@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/WEB-INF/template/template.xhtml">
+        <ui:define name="contenido">
+            <div class="content-wrapper">
+                <section class="content-header">
+                    <h1>
+                        Usuarios
+                        <small>Genesis Gourmet</small>
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li><a href="#"><i class="fa fa-home"></i> Inicio</a></li>
+                        <li class="active">Registrar Usuario</li>
+                    </ol>
+                </section>
+
+                <section class="content">
+                    <div class="col-md-8">
+                        <!-- Horizontal Form -->
+                        <div class="box box-info" style="margin-left: 180px;">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Registrar Usuario</h3>
+                            </div>
+                            <!-- /.box-header -->
+                            <!-- form start -->
+                            <b:message for="form-registro" showSummary="true" show-detail="true"/>
+                            <h:form class="form-horizontal" id="form-registro">
+                                <div class="box-body">
+
+                                    <div class="form-group">
+                                        <label for="cedula" class="col-sm-2 control-label">Documento</label>
+
+                                        <div class="col-sm-10">
+                                            <h:inputText  class="form-control" id="cedula" a:placeholder="Documento" value="#{registroController.nuevoUsuario.cedula}"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="clave" class="col-sm-2 control-label">Clave</label>
+
+                                        <div class="col-sm-10">
+                                            
+                                            <h:inputText class="form-control" id="clave" a:placeholder="Clave" value="#{registroController.nuevoUsuario.clave}"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="primerNombre" class="col-sm-2 control-label">1er Nombre</label>
+
+                                        <div class="col-sm-10">
+                                            <h:inputText  class="form-control" id="primerNombre" a:placeholder="1er Nombre" value="#{registroController.nuevoUsuario.primerNombre}"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="segundoNombre" class="col-sm-2 control-label">2do Nombre</label>
+
+                                        <div class="col-sm-10">
+                                            <h:inputText  class="form-control" id="segundoNombre" a:placeholder="2do Nombre" value="#{registroController.nuevoUsuario.segundoNombre}"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="primerApellido" class="col-sm-2 control-label">1er Apellido</label>
+
+                                        <div class="col-sm-10">
+                                            <h:inputText  class="form-control" id="primerApellido" a:placeholder="1er Apellido" value="#{registroController.nuevoUsuario.primerApellido}"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="segundoApellido" class="col-sm-2 control-label">2do Apellido</label>
+
+                                        <div class="col-sm-10">
+                                            <h:inputText  class="form-control" id="segundoApellido" a:placeholder="2do Apellido" value="#{registroController.nuevoUsuario.segundoApellido}"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="telefono" class="col-sm-2 control-label">Telefono</label>
+
+                                        <div class="col-sm-10">
+                                            <h:inputText  class="form-control" id="telefono" a:placeholder="Telefono" value="#{registroController.nuevoUsuario.telefono}"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="email" class="col-sm-2 control-label">Email</label>
+
+                                        <div class="col-sm-10">
+                                            <h:inputText  a:type="email" class="form-control" id="email" a:placeholder="Email" value="#{registroController.nuevoUsuario.correo}" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="direccion" class="col-sm-2 control-label">Direccion</label>
+
+                                        <div class="col-sm-10">
+                                            <h:inputText  class="form-control" id="direccion" a:placeholder="Direccion" value="#{registroController.nuevoUsuario.direccion}"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="tipocc" class="col-sm-2 control-label">Tipo</label>
+                                        <div class="col-sm-10">
+                                            <b:selectOneMenu value="#{registroController.nuevoUsuario.tipoDocumento}">
+                                                <f:selectItems value="#{tipoDocumentoController.tiposDeDocumentos}" var="td" itemLabel="#{td.tipo}"/>
+                                            </b:selectOneMenu>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <!-- /.box-body -->
+                                <div class="box-footer">                                  
+                                    <h:commandButton type="submit" class="btn btn-info pull-right" value="Guardar" action="#{registroController.registrar()}"/>
+                                </div>
+                                <!-- /.box-footer -->
+                            </h:form>
+                        </div>
+
+                        <!-- /.box -->
+                    </div>
+
+                </section>
+            </div>
+
+        </ui:define>
+    </ui:composition>
+
+</html>
