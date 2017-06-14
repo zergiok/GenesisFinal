@@ -67,7 +67,7 @@ public class ListarUsuariosController implements Serializable{
     }
 
     public void setUsuarioSeleccionado(Usuario usuarioSeleccionado) {
-        System.out.println("hdjsahjdhsajkdhjksahd - " + usuarioSeleccionado.getCedula());
+        System.out.println("Usuario - " + usuarioSeleccionado.getCedula());
         this.usuarioSeleccionado = usuarioSeleccionado;
     }
     

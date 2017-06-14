@@ -19,12 +19,12 @@ and open the template in the editor.
             <div class="content-wrapper">
                 <section class="content-header">
                     <h1>
-                        Perfil
+                        #{msjApp.perfil}
                         <small>Modificar Datos</small>
                     </h1>
                     <ol class="breadcrumb">
-                        <li><a href="#"><i class="fa fa-home"></i> Inicio</a></li>
-                        <li class="active">Perfil</li>
+                        <li><a href="#"><i class="fa fa-home"></i> #{msjApp.inicio}</a></li>
+                        <li class="active">#{msjApp.perfil}</li>
                     </ol>
                 </section>
 
@@ -38,42 +38,42 @@ and open the template in the editor.
                                 <div class="box-body box-profile">
                                     <img class="profile-user-img img-responsive img-circle" src="#{request.contextPath}/resources/imgs/perfil.jpg" alt="User profile picture"/>
 
-                                    <h3 class="profile-username text-center">Nombre y Apellido</h3>
+                                    <h3 class="profile-username text-center">#{sessionController.usuario.primerNombre} #{sessionController.usuario.primerApellido}</h3>
 
-                                    <p class="text-muted text-center">Rol</p>
+                                    <p class="text-muted text-center">#{sessionController.rolSeleccionado.descripcion}</p>
 
                                     <div class="box-header with-border">
-                                        <h3 class="box-title">Información</h3>
+                                        <h3 class="box-title">#{msjApp.informacion}</h3>
                                     </div>
 
                                     <div class="box-body">
-                                        <strong><i class="fa  fa-user margin-r-5"></i> Nombre Completo </strong>
+                                        <strong><i class="fa  fa-user margin-r-5"></i> #{msjApp.nombreCompleto} </strong>
 
-                                        <p class="text-muted">Sergio David Camargo Hormaza </p>
+                                        <p class="text-muted">#{sessionController.usuario.primerNombre} #{sessionController.usuario.segundoNombre} #{sessionController.usuario.primerApellido} #{sessionController.usuario.segundoApellido}</p>
 
-                                        <strong><i class="fa  fa-barcode margin-r-5"></i> Documento </strong>
+                                        <strong><i class="fa  fa-barcode margin-r-5"></i> #{msjApp.documento} </strong>
 
-                                        <p class="text-muted">1014213654 </p>
+                                        <p class="text-muted">#{sessionController.usuario.cedula} </p>
 
-                                        <strong><i class="fa  fa-barcode margin-r-5"></i> Tipo Documento </strong>
+                                        <strong><i class="fa  fa-barcode margin-r-5"></i> #{msjApp.tipoDocumento} </strong>
 
-                                        <p class="text-muted">C.C </p>
+                                        <p class="text-muted">#{sessionController.usuario.tipoDocumento.sigla} </p>
 
-                                        <strong><i class="fa fa-envelope-o margin-r-5"></i> Correo</strong>
+                                        <strong><i class="fa fa-envelope-o margin-r-5"></i> #{msjApp.correo}</strong>
 
-                                        <p class="text-muted">sdcamargo45@misena.edu.co</p>
+                                        <p class="text-muted">#{sessionController.usuario.correo}</p>
 
-                                        <strong><i class="fa fa-map-marker margin-r-5"></i> Direccion</strong>
+                                        <strong><i class="fa fa-map-marker margin-r-5"></i> #{msjApp.direccion}</strong>
 
-                                        <p class="text-muted">Cll 63C No. 69-59</p>
+                                        <p class="text-muted">#{sessionController.usuario.direccion}</p>
 
-                                        <strong><i class="fa fa-phone margin-r-5"></i> Telefono</strong>
+                                        <strong><i class="fa fa-phone margin-r-5"></i> #{msjApp.telefono}</strong>
 
-                                        <p class="text-muted">3204740457</p>
+                                        <p class="text-muted">#{sessionController.usuario.telefono}</p>
 
-                                        <strong><i class="fa fa-spinner margin-r-5"></i> Estado</strong>
+                                        <strong><i class="fa fa-spinner margin-r-5"></i> #{msjApp.estado}</strong>
 
-                                        <p class="text-muted">Activo</p>
+                                        <p class="text-muted">#{sessionController.usuario.estado}</p>
 
                                     </div>
 
@@ -88,8 +88,8 @@ and open the template in the editor.
                             <div class="nav-tabs-custom">
 
                                 <ul class="nav nav-tabs">
-                                    <li class="active"><a href="#activity" data-toggle="tab">Datos Personales</a></li>
-                                    <li><a href="#settings" data-toggle="tab">Datos de Contacto</a></li>
+                                    <li class="active"><a href="#activity" data-toggle="tab">#{msjApp.datosPersonales}</a></li>
+                                    <li><a href="#settings" data-toggle="tab">#{msjApp.datosContacto}</a></li>
                                 </ul>
 
                                 <div class="tab-content">
@@ -97,7 +97,7 @@ and open the template in the editor.
 
                                         <h:form class="form-horizontal">
                                             <div class="form-group">
-                                                <label for="inputName" class="col-sm-2 control-label">Primer Nombre</label>
+                                                <label for="inputName" class="col-sm-2 control-label">#{msjApp.primerNombre}</label>
 
                                                 <div class="col-sm-10">
                                                     <h:inputText class="form-control" id="primerNombre" a:placeholder="Nombre"/>
@@ -105,7 +105,7 @@ and open the template in the editor.
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="inputName" class="col-sm-2 control-label">Segundo Nombre</label>
+                                                <label for="inputName" class="col-sm-2 control-label">#{msjApp.segundoNombre}</label>
 
                                                 <div class="col-sm-10">
                                                     <h:inputText class="form-control" id="segundoNombre" a:placeholder="Nombre"/>
@@ -113,7 +113,7 @@ and open the template in the editor.
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="inputName" class="col-sm-2 control-label">Primer Apellido</label>
+                                                <label for="inputName" class="col-sm-2 control-label">#{msjApp.primerApellido}</label>
 
                                                 <div class="col-sm-10">
                                                     <h:inputText class="form-control" id="primerApellido" a:placeholder="Apellido"/>
@@ -121,7 +121,7 @@ and open the template in the editor.
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="inputName" class="col-sm-2 control-label">Segundo Apellido</label>
+                                                <label for="inputName" class="col-sm-2 control-label">#{msjApp.segundoApellido}</label>
 
                                                 <div class="col-sm-10">
                                                     <h:inputText class="form-control" id="segundoApellido" a:placeholder="Apellido"/>
@@ -131,7 +131,7 @@ and open the template in the editor.
 
                                             <div class="form-group">
                                                 <div class="col-sm-offset-2 col-sm-10">
-                                                    <h:commandButton type="submit" class="btn btn-danger" value="Guardar"></h:commandButton>
+                                                    <h:commandButton type="submit" class="btn btn-danger" value="#{msjApp.guardar}"></h:commandButton>
                                                 </div>
                                             </div>
                                         </h:form> 
@@ -143,7 +143,7 @@ and open the template in the editor.
                                     <div class="tab-pane" id="settings">
                                         <h:form class="form-horizontal">
                                             <div class="form-group">
-                                                <label for="inputName" class="col-sm-2 control-label">Correo</label>
+                                                <label for="inputName" class="col-sm-2 control-label">#{msjApp.correo}</label>
 
                                                 <div class="col-sm-10">
                                                     <h:inputText a:type="email" class="form-control" id="correo" a:placeholder="Correo Electronico"/>
@@ -151,7 +151,7 @@ and open the template in the editor.
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="inputName" class="col-sm-2 control-label">Direccion</label>
+                                                <label for="inputName" class="col-sm-2 control-label">#{msjApp.direccion}</label>
 
                                                 <div class="col-sm-10">
                                                     <h:inputText class="form-control" id="direccion" a:placeholder="Direccion de Residencia"/>
@@ -159,7 +159,7 @@ and open the template in the editor.
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="inputName" class="col-sm-2 control-label">Telefono</label>
+                                                <label for="inputName" class="col-sm-2 control-label">#{msjApp.telefono}</label>
 
                                                 <div class="col-sm-10">
                                                     <h:inputText class="form-control" id="telefono" a:placeholder="Movil o Fijo"/>
@@ -169,7 +169,7 @@ and open the template in the editor.
 
                                             <div class="form-group">
                                                 <div class="col-sm-offset-2 col-sm-10">
-                                                    <h:commandButton type="submit" class="btn btn-danger" value="Guardar"></h:commandButton>
+                                                    <h:commandButton type="submit" class="btn btn-danger" value="#{msjApp.guardar}"></h:commandButton>
                                                 </div>
                                             </div>
                                         </h:form> 

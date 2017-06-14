@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.genesis.modelo.crud.controller;
+package com.genesis.pedido.modelo.controller;
 
 /**
  *
  * @author zergiok
  */
-class Pedido {
+public class VerPedidoController {
     
 }

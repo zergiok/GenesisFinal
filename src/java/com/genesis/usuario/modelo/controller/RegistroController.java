@@ -21,7 +21,7 @@ import javax.enterprise.context.RequestScoped;
 
 /**
  *
- * @author Ismael
+ * @author zergiok
  */
 @Named(value = "registroController")
 @RequestScoped

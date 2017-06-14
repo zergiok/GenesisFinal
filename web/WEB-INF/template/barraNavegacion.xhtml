@@ -16,13 +16,13 @@
                 </div>
                 <div class="pull-left info">
                     <p>#{sessionController.usuario.primerNombre} #{sessionController.usuario.primerApellido} </p>
-                    <a href="home.xhtml"><i class="fa fa-circle text-success"></i> En Linea</a>
+                    <a href="home.xhtml"><i class="fa fa-circle text-success"></i> #{msjApp.enLinea}</a>
                 </div>
             </div>
             <!-- search form -->
             <h:form  class="sidebar-form">
                 <div class="input-group">
-                    <h:inputText   class="form-control" a:placeholder="Buscar..."/>
+                    <h:inputText   class="form-control" a:placeholder="#{msjApp.buscar}"/>
                     <span class="input-group-btn">
                         <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
                         </button>
@@ -36,7 +36,7 @@
                 <li class="active treeview">
                     <a href="#{request.contextPath}/app/home.xhtml">
                         <i class="fa fa-home"></i> 
-                        <span>Inicio</span>
+                        <span>#{msjApp.inicio}</span>
                     </a>
                 </li>
                 <c:forEach items="#{sessionController.rolSeleccionado.permisos}"

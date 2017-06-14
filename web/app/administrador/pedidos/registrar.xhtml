@@ -37,85 +37,135 @@ and open the template in the editor.
                             <!-- form start -->
                             <b:message for="form-registro" showSummary="true" show-detail="true"/>
                             <h:form class="form-horizontal" id="form-registro">
-                                <div class="box-body">
 
-                                    <div class="form-group">
-                                        <label for="ambiente" class="col-sm-2 control-label">Ambiente</label>
+                                <div class="col-md-9">
+                                    <div class="nav-tabs-custom">
 
-                                        <div class="col-sm-10">
-                                            <h:inputText  class="form-control" id="ambiente" a:placeholder="Ambiente" value="#{registroController.nuevoUsuario.cedula}"/>
+                                        <ul class="nav nav-tabs">
+                                            <li class="active"><a href="#activity" data-toggle="tab">Datos Mesa</a></li>
+                                            <li><a href="#settings" data-toggle="tab">Datos Pedido</a></li>
+                                        </ul>
+
+                                        <div class="tab-content">
+                                            <div class="active tab-pane" id="activity">
+
+                                                <h:form class="form-horizontal">
+                                                    <div class="form-group">
+                                                        <br/>
+                                                        <label for="ambiente" class="col-sm-2 control-label">Ambiente</label>
+                                                        <div class="col-sm-9">
+                                                            <b:selectOneMenu value="#{registroController.nuevoUsuario.tipoDocumento}">
+                                                                <f:selectItems value="#{tipoDocumentoController.tiposDeDocumentos}" var="td" itemLabel="#{td.tipo}"/>
+                                                            </b:selectOneMenu>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="mesa" class="col-sm-2 control-label">Mesa</label>
+
+                                                        <div class="col-sm-3">
+                                                            <h:inputText class="form-control" id="mesa" a:placeholder="No."/>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="accion" class="col-sm-2 control-label">Accion</label>
+
+                                                        <div class="col-sm-3">
+                                                            <h:inputText class="form-control" id="accion" a:placeholder="No."/>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="nombre" class="col-sm-2 control-label">Cliente</label>
+
+                                                        <div class="col-sm-10">
+                                                            <h:inputText class="form-control" id="nombre" a:placeholder="Nombre"/>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="apellido" class="col-sm-2 control-label">Cliente</label>
+
+                                                        <div class="col-sm-10">
+                                                            <h:inputText class="form-control" id="apellido" a:placeholder="Apellido"/>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="form-group">
+                                                        <div class="col-sm-offset-2 col-sm-10">
+                                                            <h:commandButton type="submit" class="btn btn-danger" value="#{msjApp.guardar}"></h:commandButton>
+                                                        </div>
+                                                    </div>
+                                                </h:form> 
+
+                                            </div>
+                                            <!-- /.tab-pane -->
+
+
+                                            <div class="tab-pane" id="settings">
+                                                <h:form class="form-horizontal">
+
+                                                    <div class="form-group">
+                                                        <br/>
+                                                         <label for="cantidad" class="col-sm-2 control-label">Buscar</label>
+                                                         <div class="col-sm-8">
+                                                        <h:inputText class="form-control" a:placeholder="#{msjApp.buscar}"/>
+<!--                                                        <span class="input-group-btn">
+                                                            <button type=   "submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                                                            </button>
+                                                        </span>-->
+                                                         </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        
+                                                        <label for="tipopr" class="col-sm-2 control-label">Tipo</label>
+                                                        <div class="col-sm-10">
+                                                            <b:selectOneMenu value="#{registroController.nuevoUsuario.tipoDocumento}">
+                                                                <f:selectItems value="#{tipoDocumentoController.tiposDeDocumentos}" var="td" itemLabel="#{td.tipo}"/>
+                                                            </b:selectOneMenu>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="producto" class="col-sm-2 control-label">Producto</label>
+                                                        <div class="col-sm-10">
+                                                            <b:selectOneMenu value="#{registroController.nuevoUsuario.tipoDocumento}">
+                                                                <f:selectItems value="#{tipoDocumentoController.tiposDeDocumentos}" var="td" itemLabel="#{td.tipo}"/>
+                                                            </b:selectOneMenu>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="cantidad" class="col-sm-2 control-label">Cantidad</label>
+
+                                                        <div class="col-sm-3">
+                                                            <h:inputText  class="form-control" id="cantidad" a:placeholder="No." value="#{registroController.nuevoUsuario.segundoNombre}"/>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="observacion" class="col-sm-2 control-label">Observacion</label>
+
+                                                        <div class="col-sm-10">
+                                                            <h:inputTextarea class="form-control" id="observacion" a:placeholder="Observacion del Pedido" value="#{registroController.nuevoUsuario.segundoNombre}"/>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <div class="col-sm-offset-2 col-sm-10">
+                                                            <h:commandButton type="submit" class="btn btn-danger" value="#{msjApp.guardar}"></h:commandButton>
+                                                        </div>
+                                                    </div>
+                                                </h:form> 
+                                            </div>
+                                            <!-- /.tab-pane -->
                                         </div>
+                                        <!-- /.tab-content -->
                                     </div>
-
-                                    <div class="form-group">
-                                        <label for="mesa" class="col-sm-2 control-label">Mesa</label>
-
-                                        <div class="col-sm-10">
-                                            <h:inputText  class="form-control" id="mesa" a:placeholder="No." value="#{registroController.nuevoUsuario.cedula}"/>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="capitan" class="col-sm-2 control-label">Cedula Capitan</label>
-
-                                        <div class="col-sm-10">
-
-                                            <h:inputText class="form-control" id="capitan" a:placeholder="Documento" value="#{registroController.nuevoUsuario.clave}"/>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="cliente" class="col-sm-2 control-label">Cedula Cliente</label>
-
-                                        <div class="col-sm-10">
-                                            <h:inputText  class="form-control" id="cliente" a:placeholder="Documento" value="#{registroController.nuevoUsuario.primerNombre}"/>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="fecha" class="col-sm-2 control-label">Fecha y Hora</label>
-
-                                        <div class="col-sm-10">
-                                            <h:inputText  class="form-control" id="fecha" a:placeholder="?" value="#{registroController.nuevoUsuario.segundoNombre}"/>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="form-group">
-                                        <label for="tipopr" class="col-sm-2 control-label">Tipo Producto</label>
-                                        <div class="col-sm-10">
-                                            <b:selectOneMenu value="#{registroController.nuevoUsuario.tipoDocumento}">
-                                                <f:selectItems value="#{tipoDocumentoController.tiposDeDocumentos}" var="td" itemLabel="#{td.tipo}"/>
-                                            </b:selectOneMenu>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="producto" class="col-sm-2 control-label">Producto</label>
-                                        <div class="col-sm-10">
-                                            <b:selectOneMenu value="#{registroController.nuevoUsuario.tipoDocumento}">
-                                                <f:selectItems value="#{tipoDocumentoController.tiposDeDocumentos}" var="td" itemLabel="#{td.tipo}"/>
-                                            </b:selectOneMenu>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="cantidad" class="col-sm-2 control-label">Cantidad</label>
-
-                                        <div class="col-sm-10">
-                                            <h:inputText  class="form-control" id="cantidad" a:placeholder="No." value="#{registroController.nuevoUsuario.segundoNombre}"/>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="observacion" class="col-sm-2 control-label">Observacion</label>
-
-                                        <div class="col-sm-10">
-                                            <h:inputText  class="form-control" id="observacion" a:placeholder="Observacion del Pedido" value="#{registroController.nuevoUsuario.segundoNombre}"/>
-                                        </div>
-                                    </div>
-
-
+                                    <!-- /.nav-tabs-custom -->
                                 </div>
                                 <!-- /.box-body -->
                                 <div class="box-footer">                                  

@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.genesis.modelo.crud.controller;
+package com.genesis.pedido.modelo.controller;
 
 import com.genesis.modelo.controller.util.MessageUtil;
+import com.genesis.modelo.entities.Pedido;
 import com.genesis.modelo.facade.PedidoFacadeLocal;
 import com.genesis.modelo.facade.UsuarioFacadeLocal;
 import javax.annotation.PostConstruct;
@@ -43,7 +44,7 @@ public class RegistroPedidoController {
     
      public void registrar(){
         if(nuevoPedido != null){
-            pfl.create(nuevoPedido);
+           pfl.create(nuevoPedido);
             MessageUtil.enviarMensajeInformacion("form-registro", "Registro satisfactorio", "El pedido se ha registrado correctamente.");
             init();
         } else{
