@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/WEB-INF/template/template.xhtml">
+        <ui:define name="contenido">
+            <div class="content-wrapper">
+                <section class="content-header">
+                    <h1>
+                        Productos
+                        <small>Genesis Gourmet</small>
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li><a href="#"><i class="fa fa-home"></i> Inicio</a></li>
+                        <li class="active">Registrar Producto</li>
+                    </ol>
+                </section>
+
+                <section class="content">
+                    <div class="col-md-8">
+                        <!-- Horizontal Form -->
+                        <div class="box box-info" style="margin-left: 180px;">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Registrar Producto</h3>
+                            </div>
+                            <!-- /.box-header -->
+                            <!-- form start -->
+                            <b:message for="form-registro" showSummary="true" show-detail="true"/>
+                            <h:form class="form-horizontal" id="form-registro">
+                                <div class="box-body">
+
+                                    <div class="form-group">
+                                        <label for="nombre" class="col-sm-2 control-label">Nombre</label>
+
+                                        <div class="col-sm-10">
+                                            <h:inputText  class="form-control" id="nombre" a:placeholder="Nombre" value="#{registroPedidoController.nuevoProducto.nombre}"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="precio" class="col-sm-2 control-label">Precio</label>
+
+                                        <div class="col-sm-10">
+                                            
+                                            <h:inputText class="form-control" id="precio" a:placeholder="Precio" value="#{registroPedidoController.nuevoProducto.precio}"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="tipopro" class="col-sm-2 control-label">Tipo Producto</label>
+                                        <div class="col-sm-10">
+                                            <b:selectOneMenu value="#{registroPedidoController.nuevoProducto.idTipoProducto}">
+                                                <f:selectItems value="#{tipoProductoController.tiposProductos}" var="tp" itemLabel="#{td.tipo}"/>
+                                            </b:selectOneMenu>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="cantidad" class="col-sm-2 control-label">Cantidad</label>
+
+                                        <div class="col-sm-10">
+                                            <h:inputText  class="form-control" id="direccion" a:placeholder="Cantidad" value="#{registroPedidoController.nuevoProducto.cantidad}"/>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <!-- /.box-body -->
+                                <div class="box-footer">                                  
+                                    <h:commandButton type="submit" class="btn btn-info pull-right" value="Guardar" action="#{registroPedidoController.registrar()}"/>
+                                </div>
+                                <!-- /.box-footer -->
+                            </h:form>
+                        </div>
+
+                        <!-- /.box -->
+                    </div>
+
+                </section>
+            </div>
+
+        </ui:define>
+    </ui:composition>
+
+</html>

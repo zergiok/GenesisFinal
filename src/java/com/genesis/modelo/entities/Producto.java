@@ -36,6 +36,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Producto.findAll", query = "SELECT p FROM Producto p")
     , @NamedQuery(name = "Producto.findByIdProducto", query = "SELECT p FROM Producto p WHERE p.idProducto = :idProducto")
     , @NamedQuery(name = "Producto.findByNombre", query = "SELECT p FROM Producto p WHERE p.nombre = :nombre")
+    , @NamedQuery(name = "Producto.findByCantidad", query = "SELECT p FROM Producto p WHERE p.nombre = :cantidad")
     , @NamedQuery(name = "Producto.findByPrecio", query = "SELECT p FROM Producto p WHERE p.precio = :precio")})
 public class Producto implements Serializable {
 
@@ -53,6 +54,8 @@ public class Producto implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "precio")
     private Double precio;
+    @Column(name = "cantidad")
+    private Integer cantidad;
     @OneToMany(mappedBy = "idProducto", fetch = FetchType.LAZY)
     private List<Detallepedido> detallespedido;
     @JoinColumn(name = "idTipoProducto", referencedColumnName = "idTipo")
@@ -61,6 +64,16 @@ public class Producto implements Serializable {
 
     public Producto() {
     }
+
+    public Producto(Integer idProducto, String nombre, Double precio, Integer cantidad, List<Detallepedido> detallespedido, Tipo idTipoProducto) {
+        this.idProducto = idProducto;
+        this.nombre = nombre;
+        this.precio = precio;
+        this.cantidad = cantidad;
+        this.detallespedido = detallespedido;
+        this.idTipoProducto = idTipoProducto;
+    }
+    
 
     public Producto(Integer idProducto) {
         this.idProducto = idProducto;
@@ -93,6 +106,14 @@ public class Producto implements Serializable {
 
     public void setPrecio(Double precio) {
         this.precio = precio;
+    }
+
+    public Integer getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(Integer cantidad) {
+        this.cantidad = cantidad;
     }
 
     @XmlTransient
@@ -136,5 +157,5 @@ public class Producto implements Serializable {
     public String toString() {
         return "com.genesis.modelo.entities.Producto[ idProducto=" + idProducto + " ]";
     }
-    
+
 }
