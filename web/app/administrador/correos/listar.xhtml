@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/WEB-INF/template/template.xhtml">
+        <ui:define name="contenido">
+            <div class="content-wrapper">
+                <section class="content-header">
+                    <h1>
+                        Correos
+                        <small>Genesis Gourmet</small>
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li><a href="#"><i class="fa fa-home"></i> Inicio</a></li>
+                        <li class="active">Ver Correos</li>
+                    </ol>
+                </section>
+
+                <section class="content">
+
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">Ver Correos</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Remitente</th>
+                                        <th>Contenido</th>  
+                                        <th>Destino</th>
+                                        <th>Destinatario</th>
+                                        <th>Documento</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <c:forEach items="#{listarCorreosController.correos}" var="c">
+                                        <tr>
+                                            <td><h:outputText value="#{c.correoEnviado}"</td>
+                                            <td><h:outputText value="#{c.contenido}"</td>
+                                            <td><h:outputText value="#{c.destino}"</td>
+                                            <td><h:outputText value="#{c.enviado}"</td>
+                                            <td><h:outputText value="#{c.cedula}"/>
+                                                              <button type="button" class="btn btn-danger btn-sm fa fa-trash-o" data-toggle="modal" data-target="#myModal"
+                                                        jsf:actionListener="#{listarCorreosController.correoSeleccionado}"
+                                                        f
+                                                        <f:ajax event="click" render="info-modal-delete"/>
+                                                    </button>
+                                                        </td>
+                                                        </tr>
+                                    </c:forEach>
+                                    
+                                                        </tbody>
+                                                        </table>
+                                                        </div>
+                                                        <!-- /.box-body -->
+                                                        </div>
+
+                                                        </section>
+                                                        </div>
+                                                        <script>
+                                                            $(function () {
+                                                                $("#example1").DataTable();
+                                                                $('#example2').DataTable({
+                                                                    "paging": true,
+                                                                    "lengthChange": false,
+                                                                    "searching": false,
+                                                                    "ordering": true,
+                                                                    "info": true,
+                                                                    "autoWidth": false
+                                                                });
+                                                            });
+                                                        </script>
+
+                                                        </ui:define>
+                                                        </ui:composition>
+
+                                                        </html>
