@@ -100,7 +100,7 @@ public class Tipo implements Serializable {
 
     @Override
     public String toString() {
-        return "com.genesis.modelo.entities.Tipo[ idTipo=" + idTipo + " ]";
+        return "" + idTipo + " " + descripcion;
     }
     
 }

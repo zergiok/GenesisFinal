@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+    <ui:composition template="/WEB-INF/template/template.xhtml">
+        <ui:define name="contenido">
+            <div class="content-wrapper">
+                <section class="content-header">
+                    <h1>
+                        Productos
+                        <small>Genesis Gourmet</small>
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li><a href="#{request.contextPath}/app/home.xhtml"><i class="fa fa-home"></i> Inicio</a></li>
+                        <li class="active">Ver Productos</li>
+                    </ol>
+                </section>
+                <b:message for="listar-productos" showSummary="true" show-detail="true"/>
+                <h:form id="listar-productos" prependId="false">
+                    <section class="content">
+
+                        <div class="box">
+                            <div class="box-header">
+                                <h3 class="box-title">Ver Productos</h3>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <table id="example1" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>IdProducto</th>
+                                            <th>Nombre</th>
+                                            <th>Precio</th>  
+                                            <th>Tipo Producto</th>
+                                            <th>Cantidad</th>
+                                            <th></th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <c:forEach items="#{listarProductosController.productos}" var="p">
+                                            <tr>
+                                                <td>#{p.idProducto}</td>
+                                                <td><h:outputText value="#{p.nombre}"/></td>
+                                                <td><h:outputText value="#{p.precio}"/></td>
+                                                <td><h:outputText value="#{p.idTipoProducto.descripcion}"/></td>
+                                                <td><h:outputText value="#{p.cantidad}"/></td>
+                                                <td>
+                                                    <!--<h:commandLink class="fa fa-eye btn btn-primary btn-sm"  value="" />-->
+                                                    <button type="button" class="btn btn-primary btn-sm fa fa-eye" data-toggle="modal" data-target="#modalSee"
+                                                            jsf:actionListener="#{verProductoController.setProducto(p)}">
+                                                        <f:ajax event="click" render="info-modal-see"/>
+                                                    </button>
+                                                    <button type="button" class="btn btn-warning btn-sm fa fa-pencil" data-toggle="modal" data-target="#modalEdit"
+                                                            jsf:actionListener="#{modificarProductoController.setProductoSeleccionado(p)}">
+                                                        <f:ajax event="click" render="info-modal-update"/>
+                                                    </button>
+
+                                                    <button type="button" class="btn btn-danger btn-sm fa fa-trash-o" data-toggle="modal" data-target="#myModal"
+                                                            jsf:actionListener="#{listarProductosController.setProductoSeleccionado(p)}">
+                                                        <f:ajax event="click" render="info-modal-delete"/>
+                                                    </button>
+                                                </td>
+
+                                            </tr>
+                                        </c:forEach>
+                                    </tbody>
+                                    <!--Inicio modal eliminar-->
+                                    <div id="myModal" class="modal fade" role="dialog">
+                                        <div class="modal-dialog">
+
+
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close fa fa-close" data-dismiss="modal"></button>
+                                                    <h4 class="modal-title">Eliminar Producto</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <h:panelGroup id="info-modal-delete" layout="block">
+                                                        <p>¿Está seguro de eliminar el producto #{listarProductosController.productoSeleccionado.nombre} ?</p>
+                                                    </h:panelGroup>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <h:commandButton class="btn btn-danger" value="Eliminar" actionListener="#{listarProductosController.eliminarProducto()}"/>
+                                                    <!--<button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>-->
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <!--Fin modal eliminar-->
+                                    <!--Inicio modal actualizar-->
+                                    <div id="modalEdit" class="modal fade" role="dialog">
+                                        <div class="modal-dialog">
+
+
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close fa fa-close" data-dismiss="modal"></button>
+                                                    <h4 class="modal-title">Actualización de datos</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <h:panelGroup id="info-modal-update" layout="block">
+                                                        <h:form class="form-horizontal" id="form-registro">
+                                                            <div class="box-body">
+
+
+                                                                <div class="form-group">
+                                                                    <label for="idProducto" class="col-sm-2 control-label">idProducto</label>
+
+                                                                    <div class="col-sm-10">
+                                                                        <h:inputText  class="form-control" id="idProducto" a:placeholder="Producto" value="#{modificarProductoController.productoSeleccionado.idProducto}"/>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <label for="nombre" class="col-sm-2 control-label">Nombre</label>
+
+                                                                    <div class="col-sm-10">
+                                                                        <h:inputText class="form-control" id="nombre" a:placeholder="Nombre" value="#{modificarProductoController.productoSeleccionado.nombre}"/>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <label for="precio" class="col-sm-2 control-label">Precio</label>
+
+                                                                    <div class="col-sm-10">
+                                                                        <h:inputText  class="form-control" id="precio" a:placeholder="Precio" value="#{modificarProductoController.productoSeleccionado.precio}"/>
+                                                                    </div>
+                                                                </div>
+
+
+                                                                <div class="form-group">
+                                                                    <label for="tipopro" class="col-sm-2 control-label">Tipo de Producto</label>
+                                                                    <div class="col-sm-10">
+                                                                        <b:selectOneMenu value="#{registroPedidoController.nuevoProducto.idTipoProducto}">
+                                                                            <!--Tipos de documentos -->
+                                                                            <f:selectItems value="#{tipoProductoController.tiposProductos}" var="tp" itemLabel="#{tp.descripcion}"/>
+                                                                        </b:selectOneMenu>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <label for="cantidad" class="col-sm-2 control-label">Cantidad</label>
+
+                                                                    <div class="col-sm-10">
+                                                                        <h:inputText class="form-control" id="cantidad" a:placeholder="Cantidad" value="#{modificarProductoController.productoSeleccionado.cantidad}"/>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!-- /.box-body -->
+
+                                                            <!-- /.box-footer -->
+                                                        </h:form>
+                                                    </h:panelGroup>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <h:commandButton class="btn btn-info btn btn-block" value="Actualizar" actionListener="#{modificarProductoController.actulaizarDatos()}"/>
+                                                    <!--<button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>-->
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <!--Fin modal actualizar-->
+                                    <!--Inicio modal ver-->
+                                    <div id="modalSee" class="modal fade" role="dialog">
+                                        <div class="modal-dialog">
+
+
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close fa fa-close" data-dismiss="modal"></button>
+                                                    <h4 class="modal-title">Datos de producto</h4>
+                                                </div>
+                                                <div class="modal-bod">
+                                                    <h:panelGroup id="info-modal-see" layout="block">
+                                                        <b:panelGrid colSm="12" columns="2">
+                                                            <h:outputText style="font-weight: bold;" value="IdProducto:"/>
+                                                            <h:outputText value="#{verProductoController.producto.idProducto}"/>
+                                                            <h:outputText style="font-weight: bold;" value="Tipo Producto:"/>
+                                                            <h:outputText value="#{verProductoController.producto.idTipoProducto.idTipo}"/>
+                                                            <h:outputText style="font-weight: bold;" value="Nombre:"/>
+                                                            <h:outputText value="#{verProductoController.producto.nombre}"/>
+                                                            <h:outputText style="font-weight: bold;" value="Precio:"/>
+                                                            <h:outputText value="#{verUsuarioController.usuario.primerApellido} #{verUsuarioController.usuario.segundoApellido}"/>
+                                                            <h:outputText style="font-weight: bold;" value="Cantidad:"/>
+                                                            <h:outputText value="#{verProductoController.producto.cantidad}"/>
+                                                        </b:panelGrid>
+                                                    </h:panelGroup>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-info" data-dismiss="modal" >Aceptar</button>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <!--Fin modal ver-->
+                                </table>
+                            </div>
+                            <!-- /.box-body -->
+                        </div>
+
+                    </section>
+
+                </h:form>
+            </div>
+            <script>
+                $(function () {
+                    $("#example1").DataTable();
+                    $('#example2').DataTable({
+                        "paging": true,
+                        "lengthChange": false,
+                        "searching": false,
+                        "ordering": true,
+                        "info": true,
+                        "autoWidth": false
+                    });
+                });
+            </script>
+
+        </ui:define>
+    </ui:composition>
+
+</html>
