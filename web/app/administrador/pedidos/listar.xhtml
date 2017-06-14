@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+    <ui:composition template="/WEB-INF/template/template.xhtml">
+        <ui:define name="contenido">
+            <div class="content-wrapper">
+                <section class="content-header">
+                    <h1>
+                        Pedidos
+                        <small>Genesis Gourmet</small>
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li><a href="#{request.contextPath}/app/home.xhtml"><i class="fa fa-home"></i> Inicio</a></li>
+                        <li class="active">Ver Pedidos</li>
+                    </ol>
+                </section>
+                <b:message for="listar-usuarios" showSummary="true" show-detail="true"/>
+                <h:form id="listar-usuarios" prependId="false">
+                    <section class="content">
+
+                        <div class="box">
+                            <div class="box-header">
+                                <h3 class="box-title">Ver Pedidos</h3>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+                                <table id="example1" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Ambiente</th>
+                                            <th>Mesa</th>
+                                            <th>Cliente</th>  
+                                            <th>Capitan</th>
+                                            <th>Producto</th>
+                                            <th></th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <c:forEach items="#{listarUsuariosController.usuarios}" var="u">
+                                            <tr>
+                                                <td>#{u.cedula}</td>
+                                                <td><h:outputText value="#{u.primerNombre}"/></td>
+                                                <td><h:outputText value="#{u.primerApellido}"/></td>
+                                                <td><h:outputText value="#{u.tipoDocumento.tipo}"/></td>
+                                                <td><h:outputText value="#{u.correo}"/></td>
+                                                <td>
+                                                    <!--<h:commandLink class="fa fa-eye btn btn-primary btn-sm"  value="" />-->
+                                                    <button type="button" class="btn btn-primary btn-sm fa fa-eye" data-toggle="modal" data-target="#modalSee"
+                                                            jsf:actionListener="#{verUsuarioController.setUsuario(u)}">
+                                                        <f:ajax event="click" render="info-modal-see"/>
+                                                    </button>
+                                                    <button type="button" class="btn btn-warning btn-sm fa fa-pencil" data-toggle="modal" data-target="#modalEdit"
+                                                            jsf:actionListener="#{modificarController.setUsuarioSeleccionado(u)}">
+                                                        <f:ajax event="click" render="info-modal-update"/>
+                                                    </button>
+
+                                                    <button type="button" class="btn btn-danger btn-sm fa fa-trash-o" data-toggle="modal" data-target="#myModal"
+                                                            jsf:actionListener="#{listarUsuariosController.setUsuarioSeleccionado(u)}">
+                                                        <f:ajax event="click" render="info-modal-delete"/>
+                                                    </button>
+                                                </td>
+
+                                            </tr>
+                                        </c:forEach>
+                                    </tbody>
+                                    <!--Inicio modal eliminar-->
+                                    <div id="myModal" class="modal fade" role="dialog">
+                                        <div class="modal-dialog">
+
+
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close fa fa-close" data-dismiss="modal"></button>
+                                                    <h4 class="modal-title">Modal Header</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <h:panelGroup id="info-modal-delete" layout="block">
+                                                        <p>¿Está seguro de eliminar el usuario #{listarUsuariosController.usuarioSeleccionado.primerNombre} #{listarUsuariosController.usuarioSeleccionado.primerApellido}?</p>
+                                                    </h:panelGroup>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <h:commandButton class="btn btn-danger" value="Eliminar" actionListener="#{listarUsuariosController.eliminarUsuario()}"/>
+                                                    <!--<button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>-->
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <!--Fin modal eliminar-->
+                                    <!--Inicio modal actualizar-->
+                                    <div id="modalEdit" class="modal fade" role="dialog">
+                                        <div class="modal-dialog">
+
+
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close fa fa-close" data-dismiss="modal"></button>
+                                                    <h4 class="modal-title">Actualizaci�n de datos</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <h:panelGroup id="info-modal-update" layout="block">
+                                                        <h:form class="form-horizontal" id="form-registro">
+                                                            <div class="box-body">
+
+
+                                                                <div class="form-group">
+                                                                    <label for="telefono" class="col-sm-2 control-label">Telefono</label>
+
+                                                                    <div class="col-sm-10">
+                                                                        <h:inputText  class="form-control" id="telefono" a:placeholder="Telefono" value="#{modificarController.usuarioSeleccionado.telefono}"/>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <label for="email" class="col-sm-2 control-label">Email</label>
+
+                                                                    <div class="col-sm-10">
+                                                                        <h:inputText  a:type="email" class="form-control" id="email" a:placeholder="Email" value="#{modificarController.usuarioSeleccionado.correo}" />
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <label for="direccion" class="col-sm-2 control-label">Direccion</label>
+
+                                                                    <div class="col-sm-10">
+                                                                        <h:inputText  class="form-control" id="direccion" a:placeholder="Direccion" value="#{modificarController.usuarioSeleccionado.direccion}"/>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <label for="clave" class="col-sm-2 control-label">Clave</label>
+
+                                                                    <div class="col-sm-10">
+
+                                                                        <h:inputText class="form-control" id="clave" a:placeholder="Clave" value="#{modificarController.usuarioSeleccionado.clave}"/>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="tipocc" class="col-sm-2 control-label">Tipo</label>
+                                                                    <div class="col-sm-10">
+                                                                        <b:selectOneMenu value="#{registroController.nuevoUsuario.tipoDocumento}">
+                                                                            <!--Tipos de documentos -->
+                                                                            <f:selectItems value="#{tipoDocumentoController.tiposDeDocumentos}" var="td" itemLabel="#{td.tipo}"/>
+                                                                        </b:selectOneMenu>
+                                                                    </div>
+                                                                </div>
+
+
+                                                            </div>
+                                                            <!-- /.box-body -->
+
+                                                            <!-- /.box-footer -->
+                                                        </h:form>
+                                                    </h:panelGroup>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <h:commandButton class="btn btn-info btn btn-block" value="Actualizar" actionListener="#{modificarController.actulaizarDatos()}"/>
+                                                    <!--<button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>-->
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <!--Fin modal actualizar-->
+                                    <!--Inicio modal ver-->
+                                    <div id="modalSee" class="modal fade" role="dialog">
+                                        <div class="modal-dialog">
+
+
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close fa fa-close" data-dismiss="modal"></button>
+                                                    <h4 class="modal-title">Datos de usuario</h4>
+                                                </div>
+                                                <div class="modal-bod">
+                                                    <h:panelGroup id="info-modal-see" layout="block">
+                                                        <b:panelGrid colSm="12" columns="2">
+                                                            <h:outputText style="font-weight: bold;" value="Cedula:"/>
+                                                            <h:outputText value="#{verUsuarioController.usuario.cedula}"/>
+                                                            <h:outputText style="font-weight: bold;" value="Tipo Documento:"/>
+                                                            <h:outputText value="#{verUsuarioController.usuario.tipoDocumento.tipo}"/>
+                                                            <h:outputText style="font-weight: bold;" value="Nombres:"/>
+                                                            <h:outputText value="#{verUsuarioController.usuario.primerNombre} #{verUsuarioController.usuario.segundoNombre}"/>
+                                                            <h:outputText style="font-weight: bold;" value="Apellidos:"/>
+                                                            <h:outputText value="#{verUsuarioController.usuario.primerApellido} #{verUsuarioController.usuario.segundoApellido}"/>
+                                                            <h:outputText style="font-weight: bold;" value="Correo:"/>
+                                                            <h:outputText value="#{verUsuarioController.usuario.correo}"/>
+                                                            <h:outputText style="font-weight: bold;" value="Telefono:"/>
+                                                            <h:outputText value="#{verUsuarioController.usuario.telefono}"/>
+                                                            <h:outputText style="font-weight: bold;" value="Direccion:"/>
+                                                            <h:outputText value="#{verUsuarioController.usuario.direccion}"/>
+                                                            <h:outputText style="font-weight: bold;" value="Estado:"/>
+                                                            <h:outputText value="#{verUsuarioController.usuario.estado}"/>
+                                                        </b:panelGrid>
+                                                    </h:panelGroup>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-info" data-dismiss="modal" >Aceptar</button>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <!--Fin modal ver-->
+                                </table>
+                            </div>
+                            <!-- /.box-body -->
+                        </div>
+
+                    </section>
+
+                </h:form>
+            </div>
+            <script>
+                $(function () {
+                    $("#example1").DataTable();
+                    $('#example2').DataTable({
+                        "paging": true,
+                        "lengthChange": false,
+                        "searching": false,
+                        "ordering": true,
+                        "info": true,
+                        "autoWidth": false
+                    });
+                });
+            </script>
+
+        </ui:define>
+    </ui:composition>
+
+</html>

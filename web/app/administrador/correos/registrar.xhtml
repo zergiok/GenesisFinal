@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+    <ui:composition template="/WEB-INF/template/template.xhtml">
+        <ui:define name="contenido">
+            <div class="content-wrapper">
+                <section class="content-header">
+                    <h1>
+                        Correos
+                        <small>Genesis Gourmet</small>
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li><a href="#"><i class="fa fa-home"></i> Inicio</a></li>
+                        <li class="active">Enviar Correo</li>
+                    </ol>
+                </section>
+
+                <section class="content">
+                    <div class="col-md-8">
+                        <!-- Horizontal Form -->
+                        <div class="box box-info" style="margin-left: 180px;">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Enviar Correo</h3>
+                            </div>
+                            <!-- /.box-header -->
+                            <!-- form start -->
+                            <h:form class="form-horizontal">
+                                <div class="box-body">
+
+                                    <div class="form-group">
+                                        <label for="nombres" class="col-sm-2 control-label">Nombre y Apellido</label>
+
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="nombres" placeholder="Nombre y Apellido" jsf:value="#{controllerEmail.nombresyAp}"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="correoR" class="col-sm-2 control-label">Correo Remitente</label>
+
+                                        <div class="col-sm-10">
+                                            <input type="email" class="form-control" id="correoR" placeholder="Remitente" jsf:value="#{controllerEmail.correoRemi}"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="clave" class="col-sm-2 control-label">Clave</label>
+
+                                        <div class="col-sm-10">
+                                            <input   type="password" class="form-control" id="clave" placeholder="Clave Remitente" jsf:value="#{controllerEmail.claveRemi}"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="telefono" class="col-sm-2 control-label">Telefono</label>
+
+                                        <div class="col-sm-10">
+                                            <input type="text"  class="form-control" id="telefono" placeholder="Telefono" jsf:value="#{controllerEmail.telefono}"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="correoD" class="col-sm-2 control-label">Correo Destino</label>
+
+                                        <div class="col-sm-10">
+                                            <input type="email"  class="form-control" id="correoD" placeholder="Destinatario" jsf:value="#{controllerEmail.email}"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="asunto" class="col-sm-2 control-label">Asunto</label>
+
+                                        <div class="col-sm-10">
+                                            <input type="text"  class="form-control" id="asunto" placeholder="Asunto" jsf:value="#{controllerEmail.asunto}"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="mensaje" class="col-sm-2 control-label">Mensaje</label>
+
+                                        <div class="col-sm-10">
+                                            <input type="text"  class="form-control" id="mensaje" placeholder="Mensaje" jsf:value="#{controllerEmail.mensaje}"/>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!-- /.box-body -->
+                                <div class="box-footer">                                  
+                                    <h:commandButton type="submit" class="btn btn-info pull-right" value="Enviar" action="#{controllerEmail.enviarMensaje()}"/>
+                                </div>
+                                <!-- /.box-footer -->
+                            </h:form>
+                        </div>
+
+                        <!-- /.box -->
+                    </div>
+
+                </section>
+            </div>
+            
+        </ui:define>
+    </ui:composition>
+
+</html>

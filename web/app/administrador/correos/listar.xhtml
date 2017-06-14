@@ -52,39 +52,34 @@ and open the template in the editor.
                                             <td><h:outputText value="#{c.contenido}"</td>
                                             <td><h:outputText value="#{c.destino}"</td>
                                             <td><h:outputText value="#{c.enviado}"</td>
-                                            <td><h:outputText value="#{c.cedula}"/>
-                                                              <button type="button" class="btn btn-danger btn-sm fa fa-trash-o" data-toggle="modal" data-target="#myModal"
-                                                        jsf:actionListener="#{listarCorreosController.correoSeleccionado}"
-                                                        f
-                                                        <f:ajax event="click" render="info-modal-delete"/>
-                                                    </button>
-                                                        </td>
-                                                        </tr>
+                                            <td><h:outputText value="#{c.cedula}"/></td>
+                                           
+                                        </tr>
                                     </c:forEach>
-                                    
-                                                        </tbody>
-                                                        </table>
-                                                        </div>
-                                                        <!-- /.box-body -->
-                                                        </div>
 
-                                                        </section>
-                                                        </div>
-                                                        <script>
-                                                            $(function () {
-                                                                $("#example1").DataTable();
-                                                                $('#example2').DataTable({
-                                                                    "paging": true,
-                                                                    "lengthChange": false,
-                                                                    "searching": false,
-                                                                    "ordering": true,
-                                                                    "info": true,
-                                                                    "autoWidth": false
-                                                                });
-                                                            });
-                                                        </script>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
 
-                                                        </ui:define>
-                                                        </ui:composition>
+                </section>
+            </div>
+            <script>
+                $(function () {
+                    $("#example1").DataTable();
+                    $('#example2').DataTable({
+                        "paging": true,
+                        "lengthChange": false,
+                        "searching": false,
+                        "ordering": true,
+                        "info": true,
+                        "autoWidth": false
+                    });
+                });
+            </script>
 
-                                                        </html>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/WEB-INF/template/template.xhtml">
+        <ui:define name="contenido">
+            <div class="content-wrapper">
+                <section class="content-header">
+                    <h1>
+                        Pedidos
+                        <small>Genesis Gourmet</small>
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li><a href="#"><i class="fa fa-home"></i> Inicio</a></li>
+                        <li class="active">Registrar Pedido</li>
+                    </ol>
+                </section>
+
+                <section class="content">
+                    <div class="col-md-8">
+                        <!-- Horizontal Form -->
+                        <div class="box box-info" style="margin-left: 180px;">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Registrar Pedido</h3>
+                            </div>
+                            <!-- /.box-header -->
+                            <!-- form start -->
+                            <b:message for="form-registro" showSummary="true" show-detail="true"/>
+                            <h:form class="form-horizontal" id="form-registro">
+                                <div class="box-body">
+
+                                    <div class="form-group">
+                                        <label for="ambiente" class="col-sm-2 control-label">Ambiente</label>
+
+                                        <div class="col-sm-10">
+                                            <h:inputText  class="form-control" id="ambiente" a:placeholder="Ambiente" value="#{registroController.nuevoUsuario.cedula}"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="mesa" class="col-sm-2 control-label">Mesa</label>
+
+                                        <div class="col-sm-10">
+                                            <h:inputText  class="form-control" id="mesa" a:placeholder="No." value="#{registroController.nuevoUsuario.cedula}"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="capitan" class="col-sm-2 control-label">Cedula Capitan</label>
+
+                                        <div class="col-sm-10">
+
+                                            <h:inputText class="form-control" id="capitan" a:placeholder="Documento" value="#{registroController.nuevoUsuario.clave}"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="cliente" class="col-sm-2 control-label">Cedula Cliente</label>
+
+                                        <div class="col-sm-10">
+                                            <h:inputText  class="form-control" id="cliente" a:placeholder="Documento" value="#{registroController.nuevoUsuario.primerNombre}"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="fecha" class="col-sm-2 control-label">Fecha y Hora</label>
+
+                                        <div class="col-sm-10">
+                                            <h:inputText  class="form-control" id="fecha" a:placeholder="?" value="#{registroController.nuevoUsuario.segundoNombre}"/>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label for="tipopr" class="col-sm-2 control-label">Tipo Producto</label>
+                                        <div class="col-sm-10">
+                                            <b:selectOneMenu value="#{registroController.nuevoUsuario.tipoDocumento}">
+                                                <f:selectItems value="#{tipoDocumentoController.tiposDeDocumentos}" var="td" itemLabel="#{td.tipo}"/>
+                                            </b:selectOneMenu>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="producto" class="col-sm-2 control-label">Producto</label>
+                                        <div class="col-sm-10">
+                                            <b:selectOneMenu value="#{registroController.nuevoUsuario.tipoDocumento}">
+                                                <f:selectItems value="#{tipoDocumentoController.tiposDeDocumentos}" var="td" itemLabel="#{td.tipo}"/>
+                                            </b:selectOneMenu>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="cantidad" class="col-sm-2 control-label">Cantidad</label>
+
+                                        <div class="col-sm-10">
+                                            <h:inputText  class="form-control" id="cantidad" a:placeholder="No." value="#{registroController.nuevoUsuario.segundoNombre}"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="observacion" class="col-sm-2 control-label">Observacion</label>
+
+                                        <div class="col-sm-10">
+                                            <h:inputText  class="form-control" id="observacion" a:placeholder="Observacion del Pedido" value="#{registroController.nuevoUsuario.segundoNombre}"/>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <!-- /.box-body -->
+                                <div class="box-footer">                                  
+                                    <h:commandButton type="submit" class="btn btn-info pull-right" value="Guardar" action="#{registroController.registrar()}"/>
+                                </div>
+                                <!-- /.box-footer -->
+                            </h:form>
+                        </div>
+
+                        <!-- /.box -->
+                    </div>
+
+                </section>
+            </div>
+
+        </ui:define>
+    </ui:composition>
+
+</html>
+
